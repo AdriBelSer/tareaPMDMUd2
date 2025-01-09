@@ -1,4 +1,4 @@
-package com.yinya.bellidoserranadrianapmdm03;
+package com.yinya.bellidoserranadrianapmdm03.ui;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.yinya.bellidoserranadrianapmdm03.R;
 
 public class MainActivity extends AppCompatActivity {
 
