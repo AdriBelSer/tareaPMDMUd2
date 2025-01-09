@@ -14,4 +14,8 @@ public class PokemonResponseDataClass {
         this.previous = previous;
         this.results = results;
     }
+
+    public List<PokemonListResponseItemDataClass> getPokemonList() {
+        return results;
+    }
 }

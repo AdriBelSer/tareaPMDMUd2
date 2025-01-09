@@ -11,14 +11,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.Call;
 
-interface IPokemonApi {
-    @GET("pokemon/{id}")
-    Call<PokemonDetailResponseDataClass> fetchPokemon(@Path("id") int id);
-
-    @GET("pokemon")
-    Call<PokemonResponseDataClass> fetchPokemonsList();
-}
-
 public class PokemonApiService {
 
     private static PokemonApiService instance;
