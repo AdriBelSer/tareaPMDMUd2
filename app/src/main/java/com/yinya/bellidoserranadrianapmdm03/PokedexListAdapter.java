@@ -17,12 +17,16 @@ import java.util.ArrayList;
 
 public class PokedexListAdapter extends RecyclerView.Adapter <PokedexListAdapter.PokedexPokemonViewHolder> {
 
-    private final ArrayList<PokedexData> pokemons;
+    private ArrayList<PokedexData> pokemons;
     private final Context context;
 
     public PokedexListAdapter(ArrayList<PokedexData> pokemons, Context context) {
         this.pokemons = pokemons;
         this.context = context;
+    }
+
+    public void setPokemonArrayList(ArrayList<PokedexData> pokemons) {
+        this.pokemons = pokemons;
     }
 
 

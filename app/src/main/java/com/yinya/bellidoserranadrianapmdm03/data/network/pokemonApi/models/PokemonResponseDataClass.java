@@ -1,5 +1,8 @@
 package com.yinya.bellidoserranadrianapmdm03.data.network.pokemonApi.models;
 
+import com.yinya.bellidoserranadrianapmdm03.data.network.repository.models.PokemonListItemApiModel;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class PokemonResponseDataClass {
@@ -17,5 +20,11 @@ public class PokemonResponseDataClass {
 
     public List<PokemonListResponseItemDataClass> getPokemonList() {
         return results;
+    }
+
+    public List<PokemonListItemApiModel> asPokemonListApiModel() {
+        List<PokemonListItemApiModel> pokemons = new ArrayList();
+        results.forEach(i -> pokemons.add(new PokemonListItemApiModel(i.getName())));
+        return pokemons;
     }
 }

@@ -54,4 +54,9 @@ dependencies {
     implementation(libs.recyclerview)
     implementation(libs.cardview)
 
+    //navHostFragment
+    implementation (libs.navigation.fragment.ktx)
+    implementation (libs.navigation.ui.ktx)
+
+
 }
