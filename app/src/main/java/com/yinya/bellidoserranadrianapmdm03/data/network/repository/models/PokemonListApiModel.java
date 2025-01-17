@@ -1,7 +1,6 @@
 package com.yinya.bellidoserranadrianapmdm03.data.network.repository.models;
 
-import com.yinya.bellidoserranadrianapmdm03.PokedexData;
-import com.yinya.bellidoserranadrianapmdm03.data.network.pokemonApi.models.PokemonListResponseItemDataClass;
+import com.yinya.bellidoserranadrianapmdm03.ui.models.PokedexData;
 
 import java.util.ArrayList;
 import java.util.List;

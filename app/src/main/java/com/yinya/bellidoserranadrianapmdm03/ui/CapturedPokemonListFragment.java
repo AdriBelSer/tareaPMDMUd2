@@ -1,4 +1,4 @@
-package com.yinya.bellidoserranadrianapmdm03;
+package com.yinya.bellidoserranadrianapmdm03.ui;
 
 import android.os.Bundle;
 
@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.yinya.bellidoserranadrianapmdm03.R;
 
 
 public class CapturedPokemonListFragment extends Fragment {

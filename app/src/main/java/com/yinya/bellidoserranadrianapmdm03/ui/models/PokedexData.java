@@ -1,4 +1,4 @@
-package com.yinya.bellidoserranadrianapmdm03;
+package com.yinya.bellidoserranadrianapmdm03.ui.models;
 
 public class PokedexData {
     int id;

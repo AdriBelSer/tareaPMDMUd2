@@ -8,19 +8,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.yinya.bellidoserranadrianapmdm03.PokedexListFragment;
 import com.yinya.bellidoserranadrianapmdm03.R;
-import com.yinya.bellidoserranadrianapmdm03.data.network.pokemonApi.IPokemonApi;
-import com.yinya.bellidoserranadrianapmdm03.data.network.pokemonApi.PokemonApiService;
-import com.yinya.bellidoserranadrianapmdm03.data.network.pokemonApi.models.PokemonListResponseItemDataClass;
-import com.yinya.bellidoserranadrianapmdm03.data.network.pokemonApi.models.PokemonResponseDataClass;
 import com.yinya.bellidoserranadrianapmdm03.data.network.repository.NetworkRepository;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     public NetworkRepository networkRepository;

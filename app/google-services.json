@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "305739196578",
+    "project_id": "bellidoserranadrianapmdm03",
+    "storage_bucket": "bellidoserranadrianapmdm03.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:305739196578:android:13a039ac69855a0f788ffb",
+        "android_client_info": {
+          "package_name": "com.yinya.bellidoserranadrianapmdm03"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "305739196578-0003hquj56a3fk3utg4oip9vnne8ems4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yinya.bellidoserranadrianapmdm03",
+            "certificate_hash": "b6b240a5760ae43f7305b74946aa2453380c3d3a"
+          }
+        },
+        {
+          "client_id": "305739196578-v7ek7lk9jpkk098r02tlnf15d6kv6b83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmpRpqrTLNIWOH6R5S2QdMCkC_-v8ypW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "305739196578-v7ek7lk9jpkk098r02tlnf15d6kv6b83.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

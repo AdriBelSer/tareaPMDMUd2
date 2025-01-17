@@ -1,4 +1,4 @@
-package com.yinya.bellidoserranadrianapmdm03;
+package com.yinya.bellidoserranadrianapmdm03.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,10 +10,11 @@ import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.yinya.bellidoserranadrianapmdm03.ui.models.PokedexData;
 import com.yinya.bellidoserranadrianapmdm03.data.network.repository.models.PokemonListItemApiModel;
 import com.yinya.bellidoserranadrianapmdm03.data.network.repository.models.PokemonListApiModel;
 import com.yinya.bellidoserranadrianapmdm03.databinding.FragmentPokedexListBinding;
-import com.yinya.bellidoserranadrianapmdm03.ui.MainActivity;
+import com.yinya.bellidoserranadrianapmdm03.ui.adapters.PokedexListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

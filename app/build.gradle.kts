@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -55,8 +56,12 @@ dependencies {
     implementation(libs.cardview)
 
     //navHostFragment
-    implementation (libs.navigation.fragment.ktx)
-    implementation (libs.navigation.ui.ktx)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
 
+    //Firabase
+    // TODO añadir analytics
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
 
+    implementation("com.firebaseui:firebase-ui-auth:7.2.0")
 }

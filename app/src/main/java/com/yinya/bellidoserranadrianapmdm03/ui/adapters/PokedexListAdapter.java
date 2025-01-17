@@ -1,8 +1,7 @@
-package com.yinya.bellidoserranadrianapmdm03;
+package com.yinya.bellidoserranadrianapmdm03.ui.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
+import com.yinya.bellidoserranadrianapmdm03.ui.models.PokedexData;
 import com.yinya.bellidoserranadrianapmdm03.databinding.CardListPokedexItemBinding;
 
 import java.util.ArrayList;
