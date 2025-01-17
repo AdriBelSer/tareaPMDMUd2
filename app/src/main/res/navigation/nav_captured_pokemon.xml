@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_captured_pokemon"
+    app:startDestination="@id/capturedPokemonListFragment">
+    <fragment
+        android:id="@+id/capturedPokemonListFragment"
+        android:name="com.yinya.bellidoserranadrianapmdm03.ui.CapturedPokemonListFragment"
+        android:label="CapturedPokemonListFragment"
+        tools:layout="@layout/fragment_captured_pokemon_list" />
+</navigation>
