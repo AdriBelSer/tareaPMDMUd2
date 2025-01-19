@@ -4,11 +4,11 @@
     <string name="pokedex_view_card_view_image_description">Imagen del personaje</string>
     <string name="captured_pokemon_view_card_view_image_description">Imagen del personaje</string>
 
-    <string name="pokedex_recycler_view_card_view_title">Titulo de la card view</string>
+    <string name="pokedex_recycler_view_card_view_title">Título de la card view</string>
 
 
     <string name="tv_settings">AJUSTES</string>
-    <string name="btn_settings">Cerrar sesion</string>
+    <string name="btn_settings">Cerrar sesión</string>
     <string name="bottom_nav_menu_captured_pokemon">Mis Pokemons</string>
     <string name="bottom_nav_menu_pokedex">Pokedex</string>
     <string name="bottom_nav_menu_settings">Ajustes</string>
