@@ -1,13 +1,13 @@
 package com.yinya.bellidoserranadrianapmdm03.ui.models;
 
-public class PokedexData {
+public class PokedexPokemonData {
     int id;
-    String image;
+    boolean isCaptured;
     String name;
 
-    public PokedexData(int id, String image, String name) {
+    public PokedexPokemonData(int id, boolean isCaptured, String name) {
         this.id = id;
-        this.image = image;
+        this.isCaptured = isCaptured;
         this.name = name;
     }
 
@@ -15,8 +15,8 @@ public class PokedexData {
         return id;
     }
 
-    public String getImage() {
-        return image;
+    public boolean isCaptured() {
+        return isCaptured;
     }
 
     public String getName() {
@@ -27,8 +27,8 @@ public class PokedexData {
         this.id = id;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setCaptureState(boolean isCaptured) {
+        this.isCaptured = isCaptured;
     }
 
     public void setName(String name) {

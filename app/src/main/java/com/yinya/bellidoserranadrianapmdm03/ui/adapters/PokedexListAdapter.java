@@ -10,40 +10,38 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
-import com.yinya.bellidoserranadrianapmdm03.ui.models.PokedexData;
+import com.yinya.bellidoserranadrianapmdm03.R;
+import com.yinya.bellidoserranadrianapmdm03.ui.models.PokedexPokemonData;
 import com.yinya.bellidoserranadrianapmdm03.databinding.CardListPokedexItemBinding;
 
 import java.util.ArrayList;
 
-public class PokedexListAdapter extends RecyclerView.Adapter <PokedexListAdapter.PokedexPokemonViewHolder> {
+public class PokedexListAdapter extends RecyclerView.Adapter<PokedexListAdapter.PokedexPokemonViewHolder> {
 
-    private ArrayList<PokedexData> pokemons;
+    private ArrayList<PokedexPokemonData> pokemons;
     private final Context context;
 
-    public PokedexListAdapter(ArrayList<PokedexData> pokemons, Context context) {
+    public PokedexListAdapter(ArrayList<PokedexPokemonData> pokemons, Context context) {
         this.pokemons = pokemons;
         this.context = context;
     }
 
-    public void setPokemonArrayList(ArrayList<PokedexData> pokemons) {
-        this.pokemons = pokemons;
-    }
-
-
     @NonNull
     @Override
     public PokedexPokemonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        CardListPokedexItemBinding binding = CardListPokedexItemBinding.inflate(
-                LayoutInflater.from(parent.getContext()), parent, false);
+        CardListPokedexItemBinding binding = CardListPokedexItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new PokedexPokemonViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PokedexPokemonViewHolder holder, int position) {
-        PokedexData currentPokemon = pokemons.get(position);
+        PokedexPokemonData currentPokemon = pokemons.get(position);
         holder.pokemonName.setText(currentPokemon.getName());
-        //holder.pokemonImage.setImageResource(currentPokemon.getImage());
-
+        int pokeballRes = R.drawable.pokeball_off;
+        if (currentPokemon.isCaptured()) {
+            pokeballRes = R.drawable.pokeball_on;
+        }
+        holder.pokeballIcon.setImageResource(pokeballRes);
     }
 
     @Override
@@ -53,13 +51,13 @@ public class PokedexListAdapter extends RecyclerView.Adapter <PokedexListAdapter
 
 
     public class PokedexPokemonViewHolder extends RecyclerView.ViewHolder {
-        private ImageView pokemonImage;
+        private ImageView pokeballIcon;
         private TextView pokemonName;
         private MaterialCardView pokemonCard;
 
         public PokedexPokemonViewHolder(@NonNull CardListPokedexItemBinding binding) {
             super(binding.getRoot());
-            pokemonImage = binding.ivPokedexItemList;
+            pokeballIcon = binding.ivPokeballItemList;
             pokemonName = binding.tvPokedexItemListName;
             pokemonCard = binding.cvPokedexList;
         }

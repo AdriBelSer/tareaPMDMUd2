@@ -1,6 +1,6 @@
 package com.yinya.bellidoserranadrianapmdm03.data.network.repository.models;
 
-import com.yinya.bellidoserranadrianapmdm03.ui.models.PokedexData;
+import com.yinya.bellidoserranadrianapmdm03.ui.models.PokedexPokemonData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.List;
 public class PokemonListApiModel {
     private List<PokemonListItemApiModel> pokemons;
 
-    public static ArrayList<PokedexData> asPokemonListApiModel(List<PokemonListItemApiModel> pokemonsListApiModel) {
-        ArrayList<PokedexData> pokemons = new ArrayList();
-        pokemonsListApiModel.forEach(i -> pokemons.add(new PokedexData(1, "", i.getName())));
+    public static ArrayList<PokedexPokemonData> asPokemonListApiModel(List<PokemonListItemApiModel> pokemonsListApiModel) {
+        ArrayList<PokedexPokemonData> pokemons = new ArrayList();
+        pokemonsListApiModel.forEach(i -> pokemons.add(new PokedexPokemonData(1, i.getName().equals("bulbasaur"), i.getName())));
         return pokemons;
     }
 }

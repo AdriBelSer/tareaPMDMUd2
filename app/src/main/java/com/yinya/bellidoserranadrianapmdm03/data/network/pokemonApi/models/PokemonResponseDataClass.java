@@ -24,7 +24,28 @@ public class PokemonResponseDataClass {
 
     public List<PokemonListItemApiModel> asPokemonListApiModel() {
         List<PokemonListItemApiModel> pokemons = new ArrayList();
-        results.forEach(i -> pokemons.add(new PokemonListItemApiModel(i.getName())));
+        results.forEach(i -> pokemons.add(new PokemonListItemApiModel(i.getId(), i.getName())));
         return pokemons;
     }
+
+    public static class PokemonListResponseItemDataClass {
+        private String name;
+        private String url;
+
+        public PokemonListResponseItemDataClass(String name, String url) {
+            this.name = name;
+            this.url = url;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getId() {
+            String[] parts = url.split("/");
+            return Integer.parseInt(parts[parts.length - 1]);
+        }
+    }
+
+
 }
