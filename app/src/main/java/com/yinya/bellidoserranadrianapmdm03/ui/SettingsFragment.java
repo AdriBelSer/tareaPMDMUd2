@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -27,7 +28,7 @@ public class SettingsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentSettingsBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
@@ -36,22 +37,20 @@ public class SettingsFragment extends Fragment {
     }
 
     public void startLogoutListening() {
-        Button logoutBtn = binding.logoutButton;
+        TextView logoutBtn = binding.tvLogoutBtn;
         logoutBtn.setOnClickListener(this::onLogoutClick);
     }
 
     private void onLogoutClick(View v) {
         AuthUI.getInstance()
                 .signOut(requireContext())
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Log.d("Logout", "Logout successful");
-                        goToLogin();
-                    }
+                .addOnCompleteListener(task -> {
+                    Log.d("Logout", "Logout successful");
+                    goToLogin();
                 });
     }
 
-    private void goToLogin(){
+    private void goToLogin() {
         Intent i = new Intent(requireContext(), LoginActivity.class);
         startActivity(i);
         getActivity().finish();

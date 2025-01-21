@@ -1,19 +1,21 @@
 package com.yinya.bellidoserranadrianapmdm03.ui.models;
 
 public class CapturedPokemonData {
-    private String image;
-    private String name;
-    private String type;
-    private float weight;
     private int id;
+    private String name;
+    private String image;
+    private String type1;
+    private String type2;
+    private float weight;
     private float height;
 
-    public CapturedPokemonData(String image, String name, String type, float weight, int id, float height) {
+    public CapturedPokemonData(int id, String name, String image, String type1, String type2, float weight, float height) {
+        this.id = id;
         this.image = image;
         this.name = name;
-        this.type = type;
+        this.type1 = type1;
+        this.type2 = type2;
         this.weight = weight;
-        this.id = id;
         this.height = height;
     }
 
@@ -25,8 +27,11 @@ public class CapturedPokemonData {
         return name;
     }
 
-    public String getType() {
-        return type;
+    public String getTypes() {
+        if (type1.isEmpty() && type2.isEmpty()) {
+            return "";
+        }
+        return type1 + (type1.isEmpty() ? "" : ", ") + type2;
     }
 
     public float getWeight() {
@@ -49,8 +54,9 @@ public class CapturedPokemonData {
         this.name = name;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypes(String type1, String type2) {
+        this.type1 = (type1 != null) ? type1 : "";
+        this.type2 = (type2 != null) ? type2 : "";
     }
 
     public void setWeight(float weight) {

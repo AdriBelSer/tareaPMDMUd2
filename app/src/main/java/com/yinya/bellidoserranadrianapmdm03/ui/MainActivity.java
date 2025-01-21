@@ -1,6 +1,7 @@
 package com.yinya.bellidoserranadrianapmdm03.ui;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
@@ -54,5 +56,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void fetchPokemons() {
         networkRepository.fetchPokemonsFromApi();
+    }
+
+    public void showPokemonDetail(int id, View view){
+        Bundle bundle = new Bundle();
+
+        Navigation.findNavController(view).navigate(R.id.pokemonDetailFragment, bundle);
     }
 }
