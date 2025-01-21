@@ -10,6 +10,8 @@ public class PokemonDetailApiModel {
     private String frontDefault;
     private String officialArtwork;
 
+    public PokemonDetailApiModel() {}
+
     public PokemonDetailApiModel(int id, String name, float weight, float height, String type1, String type2, String frontDefault, String officialArtwork) {
         this.id = id;
         this.name = name;

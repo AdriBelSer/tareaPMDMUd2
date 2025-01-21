@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setBottomNavigation();
         initNetworkRepository();
         fetchPokemons();
+        getCapturedPokemons();
     }
 
     private void setInsets() {
@@ -62,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void fetchOnePokemon(int id) {
         networkRepository.fetchOnePokemonFromApi(id);
+        networkRepository.getCapturedPokemonsLiveData().observe(this, capturedPokemons -> {
+            if (capturedPokemons != null) {
+
+            }
+        });
+    }
+
+    public void getCapturedPokemons() {
+
     }
 
     public void showPokemonDetail(int id, View view) {

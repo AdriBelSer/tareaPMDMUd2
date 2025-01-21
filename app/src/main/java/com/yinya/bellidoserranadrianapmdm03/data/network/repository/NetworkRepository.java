@@ -29,9 +29,9 @@ import retrofit2.Response;
 
 public class NetworkRepository {
     private static final String USER_COLLECTION = "users";
-    private static NetworkRepository instance;
     public static FirebaseFirestore firebaseDb;
     public static DocumentReference userDocument;
+    private static NetworkRepository instance;
     private static IPokemonApi apiService;
     private static List<PokemonDetailApiModel> _capturedPokemonsList = new ArrayList<>();
     private MutableLiveData<List<PokemonListItemApiModel>> _pokemons = new MutableLiveData(null);
@@ -43,7 +43,7 @@ public class NetworkRepository {
         initFirebaseDatabase();
     }
 
-    private  static  void initFirebaseDatabase() {
+    private void initFirebaseDatabase() {
         firebaseDb = FirebaseFirestore.getInstance();
         CollectionReference collection = firebaseDb.collection(USER_COLLECTION);
         getUserDocument(collection, "VZOUAKMtMTTw1aD3uWhgLRxI26F2");
@@ -54,6 +54,42 @@ public class NetworkRepository {
             instance = new NetworkRepository();
         }
         return instance;
+    }
+
+    public void getUserDocument(CollectionReference collection, String userId) {
+        DocumentReference docRef = collection.document(userId);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Map<String, Object> data = document.getData();
+
+                        if (data != null && data.containsKey("pokemons")) {
+                            List<Map<String, Object>> pokemonsData = (List) data.get("pokemons");
+                            for (Map<String, Object> p : pokemonsData) {
+                                PokemonDetailApiModel pokemon = new PokemonDetailApiModel();
+                                pokemon.setId(((Number) p.get("id")).intValue());
+                                pokemon.setName((String) p.get("name"));
+                                pokemon.setWeight(((Number) p.get("weight")).floatValue());
+                                pokemon.setHeight(((Number) p.get("height")).floatValue());
+                                pokemon.setType1((String) p.get("type1"));
+                                pokemon.setType2((String) p.get("type2"));
+                                pokemon.setFrontDefault((String) p.get("frontDefault"));
+                                pokemon.setOfficialArtwork((String) p.get("officialArtwork"));
+                                _capturedPokemonsList.add(pokemon);
+                                _capturedPokemons.setValue(_capturedPokemonsList);
+                            }
+                        }
+                    } else {
+                        Log.d("networkRepository", "No such document");
+                    }
+                } else {
+                    Log.d("networkRepository", "get failed with ", task.getException());
+                }
+            }
+        });
     }
 
     public void fetchPokemonsFromApi() {
@@ -115,25 +151,6 @@ public class NetworkRepository {
 
     public LiveData<List<PokemonDetailApiModel>> getCapturedPokemonsLiveData() {
         return _capturedPokemons;
-    }
-
-    public static void getUserDocument(CollectionReference collection, String userId) {
-        DocumentReference docRef = collection.document(userId);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Map<String, Object> data = document.getData();
-                    } else {
-                        Log.d("networkRepository", "No such document");
-                    }
-                } else {
-                    Log.d("networkRepository", "get failed with ", task.getException());
-                }
-            }
-        });
     }
 
 /*    public ArrayList getUserCapturedPokemons(String userId) {
