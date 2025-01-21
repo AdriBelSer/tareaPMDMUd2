@@ -1,15 +1,31 @@
 <resources>
-    <string name="app_name">bellidoserranadrianapmdm03</string>
+    <string name="app_name" translatable="false">bellidoserranadrianapmdm03</string>
 
-    <string name="pokedex_view_card_view_image_description">Imagen del personaje</string>
+    <string name="pokedex_view_card_view_image_description">Icono de pokedex</string>
     <string name="captured_pokemon_view_card_view_image_description">Imagen del personaje</string>
 
     <string name="pokedex_recycler_view_card_view_title">Título de la card view</string>
 
 
-    <string name="tv_settings">AJUSTES</string>
-    <string name="btn_settings">Cerrar sesión</string>
+    <string name="settings_title">AJUSTES</string>
+    <string name="settings_logout">Cerrar sesión</string>
     <string name="bottom_nav_menu_captured_pokemon">Mis Pokemons</string>
     <string name="bottom_nav_menu_pokedex">Pokedex</string>
     <string name="bottom_nav_menu_settings">Ajustes</string>
+    <!-- Pokemon captured -->
+    <string name="pokemon_captured_pokemon_id" translatable="false">#%1$s</string>
+    <string name="pokemon_captured_height">Altura:</string>
+    <string name="pokemon_captured_height_unit" translatable="false">cm</string>
+    <string name="pokemon_captured_weight">Peso:</string>
+    <string name="pokemon_captured_weight_unit" translatable="false">kg</string>
+    <string name="pokemon_captured_types_title">Tipo(s):</string>
+    <!-- Pokemon detail -->
+    <string name="pokemon_detail_height">Altura</string>
+    <string name="pokemon_detail_height_unit" translatable="false">cm</string>
+    <string name="pokemon_detail_weight">Peso</string>
+    <string name="pokemon_detail_weight_unit" translatable="false">kg</string>
+    <string name="pokemon_detail_types_title">Tipo(s)</string>
+    <string name="settings_about_me">Acerca de...</string>
+    <string name="settings_delete_pokemon_switch">Eliminar mis pokémon</string>
+    <string name="settings_language">Idioma</string>
 </resources>

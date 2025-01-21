@@ -8,5 +8,14 @@
         android:id="@+id/capturedPokemonListFragment"
         android:name="com.yinya.bellidoserranadrianapmdm03.ui.CapturedPokemonListFragment"
         android:label="CapturedPokemonListFragment"
-        tools:layout="@layout/fragment_captured_pokemon_list" />
+        tools:layout="@layout/fragment_captured_pokemon_list" >
+        <action
+            android:id="@+id/action_capturedPokemonListFragment_to_pokemonDetailFragment"
+            app:destination="@id/pokemonDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pokemonDetailFragment"
+        android:name="com.yinya.bellidoserranadrianapmdm03.ui.PokemonDetailFragment"
+        android:label="fragment_pokemon_detail"
+        tools:layout="@layout/fragment_pokemon_detail" />
 </navigation>

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cl_fragment_pokemon_list"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.PokedexListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_pokedex_list"
@@ -15,5 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="20"
-        />
+        tools:listitem="@layout/card_list_pokedex_item" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
