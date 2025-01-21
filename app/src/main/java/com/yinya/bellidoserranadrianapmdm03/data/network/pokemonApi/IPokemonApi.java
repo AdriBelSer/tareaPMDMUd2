@@ -9,7 +9,7 @@ import retrofit2.http.Path;
 
 public interface IPokemonApi {
     @GET("pokemon/{id}")
-    Call<PokemonDetailResponseDataClass> fetchPokemon(@Path("id") int id);
+    Call<PokemonDetailResponseDataClass> fetchPokemon(@Path("id") String id);
 
     @GET("pokemon")
     Call<PokemonResponseDataClass> fetchPokemonsList();

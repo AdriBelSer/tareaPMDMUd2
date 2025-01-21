@@ -1,7 +1,10 @@
 package com.yinya.bellidoserranadrianapmdm03.data.network.pokemonApi.models;
 
 import com.google.gson.annotations.SerializedName;
+import com.yinya.bellidoserranadrianapmdm03.data.network.repository.models.PokemonDetailApiModel;
+import com.yinya.bellidoserranadrianapmdm03.data.network.repository.models.PokemonListItemApiModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PokemonDetailResponseDataClass {
@@ -21,12 +24,74 @@ public class PokemonDetailResponseDataClass {
         this.types = types;
     }
 
+    public PokemonDetailApiModel asPokemonDetailApiModel() {
+        int id = this.getId();
+        String name = this.getName();
+        int hectogramsWeight = this.getWeight();
+        int decimetersHeight = this.getHeight();
+        float weight = hectogramsWeight / 10f;
+        float height = decimetersHeight * 10f;
+        List<PokemonDetailResponseDataClass. PokemonTypeResponseDataClass> types = this.getTypes();
+        String type1 = types.size() > 0 ? types.get(0).type.name : "";
+        String type2 = types.size() > 1 ? types.get(1).type.name : "";
+        String frontDefault = this.getSprites().getFrontDefault();
+        String officialArtwork = this.getSprites().getOfficialArtwork();
+        return new PokemonDetailApiModel(id, name, weight, height, type1, type2, frontDefault, officialArtwork);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public PokemonSpritesResponseDataClass getSprites() {
+        return sprites;
+    }
+
+    public void setSprites(PokemonSpritesResponseDataClass sprites) {
+        this.sprites = sprites;
+    }
+
+    public List<PokemonTypeResponseDataClass> getTypes() {
+        return types;
+    }
+
+    public void setTypes(List<PokemonTypeResponseDataClass> types) {
+        this.types = types;
+    }
+
     public static class PokemonSpritesResponseDataClass {
 
+        OtherSprites other;
         @SerializedName("front_default")
         private String frontDefault;
-
-        OtherSprites other;
 
         public PokemonSpritesResponseDataClass(String frontDefault, OtherSprites other) {
             this.frontDefault = frontDefault;

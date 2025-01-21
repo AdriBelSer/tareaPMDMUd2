@@ -10,7 +10,7 @@ public class PokemonListApiModel {
 
     public static ArrayList<PokedexPokemonData> asPokemonListApiModel(List<PokemonListItemApiModel> pokemonsListApiModel) {
         ArrayList<PokedexPokemonData> pokemons = new ArrayList();
-        pokemonsListApiModel.forEach(i -> pokemons.add(new PokedexPokemonData(1, i.getName().equals("bulbasaur"), i.getName())));
+        pokemonsListApiModel.forEach(i -> pokemons.add(new PokedexPokemonData(i.getId(), false, i.getName())));
         return pokemons;
     }
 }

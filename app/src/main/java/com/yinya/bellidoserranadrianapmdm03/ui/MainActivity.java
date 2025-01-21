@@ -29,16 +29,18 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         EdgeToEdge.enable(this);
         setContentView(binding.getRoot());
+        setInsets();
+        setBottomNavigation();
+        initNetworkRepository();
+        fetchPokemons();
+    }
+
+    private void setInsets() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        setBottomNavigation();
-
-        initNetworkRepository();
-        fetchPokemons();
     }
 
     private void setBottomNavigation() {
@@ -58,7 +60,11 @@ public class MainActivity extends AppCompatActivity {
         networkRepository.fetchPokemonsFromApi();
     }
 
-    public void showPokemonDetail(int id, View view){
+    public void fetchOnePokemon(int id) {
+        networkRepository.fetchOnePokemonFromApi(id);
+    }
+
+    public void showPokemonDetail(int id, View view) {
         Bundle bundle = new Bundle();
 
         Navigation.findNavController(view).navigate(R.id.pokemonDetailFragment, bundle);

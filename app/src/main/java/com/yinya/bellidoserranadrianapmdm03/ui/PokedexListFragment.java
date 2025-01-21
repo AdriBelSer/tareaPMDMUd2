@@ -11,6 +11,7 @@ import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.yinya.bellidoserranadrianapmdm03.data.network.repository.models.PokemonDetailApiModel;
 import com.yinya.bellidoserranadrianapmdm03.ui.models.PokedexPokemonData;
 import com.yinya.bellidoserranadrianapmdm03.data.network.repository.models.PokemonListItemApiModel;
 import com.yinya.bellidoserranadrianapmdm03.data.network.repository.models.PokemonListApiModel;
@@ -22,7 +23,7 @@ import java.util.List;
 
 public class PokedexListFragment extends Fragment {
 
-    private List<PokemonListItemApiModel> pokemons;
+    private ArrayList<PokedexPokemonData> pokemons;
     private FragmentPokedexListBinding binding;
     private RecyclerView pokemonsRv;
     private PokedexListAdapter adapter;
@@ -39,20 +40,36 @@ public class PokedexListFragment extends Fragment {
         View view = binding.getRoot();
 
         initRecyclerView();
-
-
         MainActivity activity = (MainActivity) requireActivity();
-
-        LiveData<List<PokemonListItemApiModel>> pokemonsLiveData = activity.networkRepository.getAllPokemons();
-        pokemonsLiveData.observe(requireActivity(), pokemons -> {
-            if (pokemons != null) {
-                this.pokemons = pokemons;
-                ArrayList<PokedexPokemonData> pokedexPokemons = PokemonListApiModel.asPokemonListApiModel(pokemons);
-                fillRecyclerView(pokedexPokemons);
-            }
-        });
+        observePokemonsLiveData(activity);
+        observeCapturedPokemonsLiveData(activity);
         return view;
     }
+
+    private void observePokemonsLiveData(MainActivity activity) {
+        LiveData<List<PokemonListItemApiModel>> pokemonsLiveData = activity.networkRepository.getAllPokemonsLiveData();
+        pokemonsLiveData.observe(requireActivity(), pokemons -> {
+            if (pokemons != null) {
+                this.pokemons = PokemonListApiModel.asPokemonListApiModel(pokemons);
+                fillRecyclerView(this.pokemons);
+            }
+        });
+    }
+
+    private void observeCapturedPokemonsLiveData(MainActivity activity) {
+        LiveData<List<PokemonDetailApiModel>> capturedPokemonsLiveData = activity.networkRepository.getCapturedPokemonsLiveData();
+        capturedPokemonsLiveData.observe(requireActivity(), capturedPokemons -> {
+            if (capturedPokemons != null) {
+                for (PokedexPokemonData p : this.pokemons) {
+                    boolean found = capturedPokemons.stream()
+                            .anyMatch(pokemon -> pokemon.getId() == p.getId());
+                    p.setCaptureState(found);
+                }
+                fillRecyclerView(this.pokemons);
+            }
+        });
+    }
+
 
     private void initRecyclerView() {
         pokemonsRv = binding.rvPokedexList;

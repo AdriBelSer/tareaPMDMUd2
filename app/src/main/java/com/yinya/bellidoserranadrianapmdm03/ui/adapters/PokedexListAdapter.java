@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
 import com.yinya.bellidoserranadrianapmdm03.R;
+import com.yinya.bellidoserranadrianapmdm03.ui.MainActivity;
 import com.yinya.bellidoserranadrianapmdm03.ui.models.PokedexPokemonData;
 import com.yinya.bellidoserranadrianapmdm03.databinding.CardListPokedexItemBinding;
 
@@ -42,6 +43,9 @@ public class PokedexListAdapter extends RecyclerView.Adapter<PokedexListAdapter.
             pokeballRes = R.drawable.pokeball_on;
         }
         holder.pokeballIcon.setImageResource(pokeballRes);
+        holder.pokemonCard.setOnClickListener(v -> {
+            ((MainActivity) context).fetchOnePokemon(currentPokemon.getId());
+        });
     }
 
     @Override

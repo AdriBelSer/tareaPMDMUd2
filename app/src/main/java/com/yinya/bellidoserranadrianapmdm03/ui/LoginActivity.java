@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         if (result.getResultCode() == RESULT_OK) {
             // Successfully signed in
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String userId = user.getUid();
             goToMainActivity();
         } else {
             Toast.makeText(this, "Error login", Toast.LENGTH_SHORT).show();
