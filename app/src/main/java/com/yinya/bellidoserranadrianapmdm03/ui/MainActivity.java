@@ -16,7 +16,12 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.yinya.bellidoserranadrianapmdm03.R;
 import com.yinya.bellidoserranadrianapmdm03.data.network.repository.NetworkRepository;
+import com.yinya.bellidoserranadrianapmdm03.data.network.repository.models.PokemonDetailApiModel;
 import com.yinya.bellidoserranadrianapmdm03.databinding.ActivityMainBinding;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     public NetworkRepository networkRepository;
@@ -65,10 +70,14 @@ public class MainActivity extends AppCompatActivity {
         networkRepository.fetchOnePokemonFromApi(id);
         networkRepository.getCapturedPokemonsLiveData().observe(this, capturedPokemons -> {
             if (capturedPokemons != null) {
-
+                Map<String, List<PokemonDetailApiModel>> pokemons = new HashMap<>();
+                pokemons.put("pokemons", capturedPokemons);
+                networkRepository.addPokemonsToUser(pokemons);
             }
         });
     }
+
+
 
     public void getCapturedPokemons() {
 

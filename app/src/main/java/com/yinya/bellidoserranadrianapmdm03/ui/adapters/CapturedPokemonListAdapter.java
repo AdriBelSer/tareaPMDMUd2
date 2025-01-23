@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
 import com.yinya.bellidoserranadrianapmdm03.R;
 import com.yinya.bellidoserranadrianapmdm03.databinding.CardListCapturedPokemonItemBinding;
@@ -44,7 +45,8 @@ public class CapturedPokemonListAdapter extends RecyclerView.Adapter<CapturedPok
         holder.tvTypes.setText(currentPokemon.getTypes());
         holder.tvHeight.setText(String.format("%.0f", currentPokemon.getHeight()));
         holder.tvWeight.setText(String.format("%.1f", currentPokemon.getWeight()));
-        holder.image.setImageResource(R.drawable.front_default_img);
+        String imageUrl = currentPokemon.getImage();
+        Glide.with(context).load(imageUrl).into(holder.ivImage);
         holder.pokemonCard.setOnClickListener(v -> {
             ((MainActivity) context).showPokemonDetail(currentPokemon.getId(), v);
             Log.d("captured", "selected");
@@ -64,7 +66,7 @@ public class CapturedPokemonListAdapter extends RecyclerView.Adapter<CapturedPok
         private TextView tvTypes;
         private TextView tvHeight;
         private TextView tvWeight;
-        private ImageView image;
+        private ImageView ivImage;
 
         public CapturedPokemonViewHolder(@NonNull CardListCapturedPokemonItemBinding binding) {
             super(binding.getRoot());
@@ -74,7 +76,7 @@ public class CapturedPokemonListAdapter extends RecyclerView.Adapter<CapturedPok
             tvTypes = binding.tvCapturedPokemonItemTypeList;
             tvHeight = binding.tvCapturedPokemonItemHeightAmount;
             tvWeight = binding.tvCapturedPokemonItemWeightAmount;
-            image = binding.ivCapturedPokemonItem;
+            ivImage = binding.ivCapturedPokemonItem;
         }
     }
 }

@@ -4,17 +4,24 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.yinya.bellidoserranadrianapmdm03.R;
+import com.yinya.bellidoserranadrianapmdm03.data.network.repository.models.PokemonDetailApiModel;
 import com.yinya.bellidoserranadrianapmdm03.databinding.FragmentPokemonDetailBinding;
+import com.yinya.bellidoserranadrianapmdm03.ui.models.PokedexPokemonData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PokemonDetailFragment extends Fragment {
 
     FragmentPokemonDetailBinding binding;
+    private ArrayList<PokedexPokemonData> pokemons;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,4 +46,5 @@ public class PokemonDetailFragment extends Fragment {
         binding.chipPokemonDetailType1.setText("grass");
         binding.chipPokemonDetailType2.setText("poison");
     }
+
 }

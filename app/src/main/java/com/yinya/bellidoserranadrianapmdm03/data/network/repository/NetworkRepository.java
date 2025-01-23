@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -57,8 +59,8 @@ public class NetworkRepository {
     }
 
     public void getUserDocument(CollectionReference collection, String userId) {
-        DocumentReference docRef = collection.document(userId);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        userDocument = collection.document(userId);
+        userDocument.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
@@ -151,6 +153,22 @@ public class NetworkRepository {
 
     public LiveData<List<PokemonDetailApiModel>> getCapturedPokemonsLiveData() {
         return _capturedPokemons;
+    }
+
+    public void addPokemonsToUser(Map<String, List<PokemonDetailApiModel>> pokemons) {
+        userDocument.set(pokemons)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Firebase", "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Firebase", "Error writing document", e);
+                    }
+                });
     }
 
 /*    public ArrayList getUserCapturedPokemons(String userId) {

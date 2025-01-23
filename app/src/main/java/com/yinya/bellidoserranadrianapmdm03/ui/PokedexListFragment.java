@@ -8,25 +8,37 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yinya.bellidoserranadrianapmdm03.data.network.repository.models.PokemonDetailApiModel;
-import com.yinya.bellidoserranadrianapmdm03.ui.models.PokedexPokemonData;
-import com.yinya.bellidoserranadrianapmdm03.data.network.repository.models.PokemonListItemApiModel;
 import com.yinya.bellidoserranadrianapmdm03.data.network.repository.models.PokemonListApiModel;
+import com.yinya.bellidoserranadrianapmdm03.data.network.repository.models.PokemonListItemApiModel;
 import com.yinya.bellidoserranadrianapmdm03.databinding.FragmentPokedexListBinding;
 import com.yinya.bellidoserranadrianapmdm03.ui.adapters.PokedexListAdapter;
+import com.yinya.bellidoserranadrianapmdm03.ui.models.PokedexPokemonData;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PokedexListFragment extends Fragment {
 
+    LiveData<List<PokemonDetailApiModel>> capturedPokemonsLiveData;
     private ArrayList<PokedexPokemonData> pokemons;
     private FragmentPokedexListBinding binding;
     private RecyclerView pokemonsRv;
     private PokedexListAdapter adapter;
+    private Observer<List<PokemonDetailApiModel>> observer = capturedPokemons -> {
+        if (capturedPokemons != null) {
+            for (PokedexPokemonData p : this.pokemons) {
+                boolean found = capturedPokemons.stream()
+                        .anyMatch(pokemon -> pokemon.getId() == p.getId());
+                p.setCaptureState(found);
+            }
+            fillRecyclerView(this.pokemons);
+        }
+    };
 
 
     @Override
@@ -57,17 +69,8 @@ public class PokedexListFragment extends Fragment {
     }
 
     private void observeCapturedPokemonsLiveData(MainActivity activity) {
-        LiveData<List<PokemonDetailApiModel>> capturedPokemonsLiveData = activity.networkRepository.getCapturedPokemonsLiveData();
-        capturedPokemonsLiveData.observe(requireActivity(), capturedPokemons -> {
-            if (capturedPokemons != null) {
-                for (PokedexPokemonData p : this.pokemons) {
-                    boolean found = capturedPokemons.stream()
-                            .anyMatch(pokemon -> pokemon.getId() == p.getId());
-                    p.setCaptureState(found);
-                }
-                fillRecyclerView(this.pokemons);
-            }
-        });
+        capturedPokemonsLiveData = activity.networkRepository.getCapturedPokemonsLiveData();
+        capturedPokemonsLiveData.observe(requireActivity(), observer);
     }
 
 
@@ -89,5 +92,13 @@ public class PokedexListFragment extends Fragment {
     private PokedexListAdapter initializeAdapter(ArrayList<PokedexPokemonData> pokemonsList) {
         adapter = new PokedexListAdapter(pokemonsList, requireContext());
         return adapter;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (observer != null) {
+            capturedPokemonsLiveData.removeObserver(observer);
+        }
     }
 }
