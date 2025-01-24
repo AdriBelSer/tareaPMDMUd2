@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         initNetworkRepository();
         fetchPokemons();
         getCapturedPokemons();
+        startCapturedPokemonsObservation();
     }
 
     private void setInsets() {
@@ -68,16 +69,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void fetchOnePokemon(int id) {
         networkRepository.fetchOnePokemonFromApi(id);
+    }
+
+    private void startCapturedPokemonsObservation() {
         networkRepository.getCapturedPokemonsLiveData().observe(this, capturedPokemons -> {
             if (capturedPokemons != null) {
                 Map<String, List<PokemonDetailApiModel>> pokemons = new HashMap<>();
                 pokemons.put("pokemons", capturedPokemons);
-                networkRepository.addPokemonsToUser(pokemons);
+                networkRepository.setPokemonsToUser(pokemons);
             }
         });
     }
-
-
 
     public void getCapturedPokemons() {
 
@@ -90,6 +92,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void deleteCapturedPokemon(int id) {
-        
+        networkRepository.deleteCapturedPokemon(id);
     }
 }

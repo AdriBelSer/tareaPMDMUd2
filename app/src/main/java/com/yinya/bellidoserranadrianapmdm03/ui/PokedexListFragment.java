@@ -55,6 +55,7 @@ public class PokedexListFragment extends Fragment {
         MainActivity activity = (MainActivity) requireActivity();
         observePokemonsLiveData(activity);
         observeCapturedPokemonsLiveData(activity);
+
         return view;
     }
 

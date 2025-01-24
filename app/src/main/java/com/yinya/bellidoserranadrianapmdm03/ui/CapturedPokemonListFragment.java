@@ -15,7 +15,6 @@ import com.yinya.bellidoserranadrianapmdm03.data.network.repository.models.Pokem
 import com.yinya.bellidoserranadrianapmdm03.databinding.FragmentCapturedPokemonListBinding;
 import com.yinya.bellidoserranadrianapmdm03.ui.adapters.CapturedPokemonListAdapter;
 import com.yinya.bellidoserranadrianapmdm03.ui.models.CapturedPokemonData;
-import com.yinya.bellidoserranadrianapmdm03.ui.models.PokedexPokemonData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +28,10 @@ public class CapturedPokemonListFragment extends Fragment {
     private ArrayList<CapturedPokemonData> capturedPokemons = new ArrayList<>();
     private ArrayList<PokemonDetailApiModel> repositoryCapturedPokemons = new ArrayList<>();
     LiveData<List<PokemonDetailApiModel>> capturedPokemonsLiveData;
-    private Observer<List<PokemonDetailApiModel>> observer = repositoryCapturedPokemons -> {
-        if (repositoryCapturedPokemons != null) {
-            for (PokemonDetailApiModel p : repositoryCapturedPokemons) {
+    private final Observer<List<PokemonDetailApiModel>> observer = currentCapturedPokemons -> {
+        if (currentCapturedPokemons != null) {
+            this.capturedPokemons = new ArrayList<>();
+            for (PokemonDetailApiModel p : currentCapturedPokemons) {
                 this.capturedPokemons.add(new CapturedPokemonData(
                         p.getId(),
                         p.getName(),

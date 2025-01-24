@@ -155,7 +155,7 @@ public class NetworkRepository {
         return _capturedPokemons;
     }
 
-    public void addPokemonsToUser(Map<String, List<PokemonDetailApiModel>> pokemons) {
+    public void setPokemonsToUser(Map<String, List<PokemonDetailApiModel>> pokemons) {
         userDocument.set(pokemons)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -169,6 +169,11 @@ public class NetworkRepository {
                         Log.w("Firebase", "Error writing document", e);
                     }
                 });
+    }
+
+    public void deleteCapturedPokemon(int id) {
+        _capturedPokemonsList.removeIf(pokemon -> pokemon.getId() == id);
+        _capturedPokemons.setValue(_capturedPokemonsList);
     }
 
 /*    public ArrayList getUserCapturedPokemons(String userId) {

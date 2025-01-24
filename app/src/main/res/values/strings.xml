@@ -26,14 +26,14 @@
     <string name="pokemon_detail_height">Height</string>
     <string name="pokemon_detail_weight">Weight</string>
     <string name="pokemon_detail_types_title">Type(s)</string>
-    <string name="settings_about_me">About me...</string>
+    <string name="settings_about_me">About me…</string>
     <string name="settings_delete_pokemon_switch">Delete my pokemon</string>
     <string name="settings_language">Language</string>
     <string name="menu_selectable_spanish">Spanish</string>
     <string name="menu_selectable_english">English</string>
 
     <!-- Context menu -->
-    <string name="context_menu_about_me">About…</string>
+    <string name="context_menu_about_me">About me…</string>
     <string name="context_menu_alert_dialog_text">App developed by Adriana Bellido Serran 1.0.</string>
     <string name="context_menu_neutral_button">Close</string>
 </resources>
