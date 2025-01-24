@@ -36,6 +36,7 @@ public class CapturedPokemonListFragment extends Fragment {
                         p.getId(),
                         p.getName(),
                         p.getFrontDefault(),
+                        p.getOfficialArtwork(),
                         p.getType1(),
                         p.getType2(),
                         p.getWeight(),

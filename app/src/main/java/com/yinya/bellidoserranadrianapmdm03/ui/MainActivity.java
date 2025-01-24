@@ -18,6 +18,7 @@ import com.yinya.bellidoserranadrianapmdm03.R;
 import com.yinya.bellidoserranadrianapmdm03.data.network.repository.NetworkRepository;
 import com.yinya.bellidoserranadrianapmdm03.data.network.repository.models.PokemonDetailApiModel;
 import com.yinya.bellidoserranadrianapmdm03.databinding.ActivityMainBinding;
+import com.yinya.bellidoserranadrianapmdm03.ui.models.CapturedPokemonData;
 
 import java.util.HashMap;
 import java.util.List;
@@ -85,10 +86,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void showPokemonDetail(int id, View view) {
+    public void showPokemonDetail(CapturedPokemonData currentPokemon, View view) {
         Bundle bundle = new Bundle();
-
-        Navigation.findNavController(view).navigate(R.id.pokemonDetailFragment, bundle);
+        bundle.putString("imageUrl", currentPokemon.getDetailImage());
+        bundle.putString("name", currentPokemon.getName());
+        bundle.putString("weight", String.format("%.0f", currentPokemon.getWeight()));
+        bundle.putString("height", String.format("%.1f", currentPokemon.getHeight()));
+        bundle.putString("type1", currentPokemon.getType1());
+        bundle.putString("type2", currentPokemon.getType2());
+        Navigation.findNavController(view).navigate(R.id.action_capturedPokemonListFragment_to_pokemonDetailFragment, bundle);
     }
 
     public void deleteCapturedPokemon(int id) {

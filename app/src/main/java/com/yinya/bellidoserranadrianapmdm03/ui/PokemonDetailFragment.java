@@ -1,22 +1,18 @@
 package com.yinya.bellidoserranadrianapmdm03.ui;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.yinya.bellidoserranadrianapmdm03.R;
-import com.yinya.bellidoserranadrianapmdm03.data.network.repository.models.PokemonDetailApiModel;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+import com.bumptech.glide.Glide;
 import com.yinya.bellidoserranadrianapmdm03.databinding.FragmentPokemonDetailBinding;
 import com.yinya.bellidoserranadrianapmdm03.ui.models.PokedexPokemonData;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PokemonDetailFragment extends Fragment {
 
@@ -33,18 +29,29 @@ public class PokemonDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentPokemonDetailBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
-        fillPokemon();
+        Bundle arguments = getArguments();
+        fillPokemon(arguments);
         return view;
     }
 
-    private void fillPokemon() {
-        binding.ivPokemonDetailPokemonImg.setImageResource(R.drawable.bulbasaur);
-        binding.tvPokemonDetailName.setText("Bulbasaur");
-        //binding.tvPokemonDetailDescription.setText("A strange seed was planted on its back at birth. The plant sprouts and grows with this POKéMON.");
-        binding.tvPokemonDetailHeightAmount.setText("6.9");
-        binding.tvPokemonDetailWeightAmount.setText("70");
-        binding.chipPokemonDetailType1.setText("grass");
-        binding.chipPokemonDetailType2.setText("poison");
+    private void fillPokemon(Bundle arguments) {
+        String imageUrl = arguments.getString("imageUrl");
+        Glide.with(requireContext()).load(imageUrl).into(binding.ivPokemonDetailPokemonImg);
+        binding.tvPokemonDetailName.setText(arguments.getString("name"));
+        binding.tvPokemonDetailHeightAmount.setText(arguments.getString("height"));
+        binding.tvPokemonDetailWeightAmount.setText(arguments.getString("weight"));
+        String type1 = arguments.getString("type1");
+        String type2 = arguments.getString("type2");
+        if (type1 != "" && type1 != null) {
+            binding.chipPokemonDetailType1.setText(type1);
+        } else {
+            binding.chipPokemonDetailType1.setText("-");
+        }
+        if (type2 != "" && type2 != null) {
+            binding.chipPokemonDetailType2.setText(type2);
+        } else {
+            binding.chipPokemonDetailType2.setVisibility(View.GONE);
+        }
     }
 
 }

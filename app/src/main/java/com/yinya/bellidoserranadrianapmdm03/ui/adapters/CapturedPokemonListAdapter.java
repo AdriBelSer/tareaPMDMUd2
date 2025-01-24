@@ -1,7 +1,6 @@
 package com.yinya.bellidoserranadrianapmdm03.ui.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,11 +47,10 @@ public class CapturedPokemonListAdapter extends RecyclerView.Adapter<CapturedPok
         holder.tvTypes.setText(currentPokemon.getTypes());
         holder.tvHeight.setText(String.format("%.0f", currentPokemon.getHeight()));
         holder.tvWeight.setText(String.format("%.1f", currentPokemon.getWeight()));
-        String imageUrl = currentPokemon.getImage();
+        String imageUrl = currentPokemon.getFrontImage();
         Glide.with(context).load(imageUrl).into(holder.ivImage);
         holder.pokemonCard.setOnClickListener(v -> {
-            ((MainActivity) context).showPokemonDetail(currentPokemon.getId(), v);
-            Log.d("captured", "selected");
+            ((MainActivity) context).showPokemonDetail(currentPokemon, v);
         });
         setDeleteButton(holder, currentPokemon);
     }
