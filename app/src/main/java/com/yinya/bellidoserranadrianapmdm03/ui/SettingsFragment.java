@@ -3,23 +3,21 @@ package com.yinya.bellidoserranadrianapmdm03.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.materialswitch.MaterialSwitch;
 import com.yinya.bellidoserranadrianapmdm03.MyApp;
 import com.yinya.bellidoserranadrianapmdm03.R;
 import com.yinya.bellidoserranadrianapmdm03.databinding.FragmentSettingsBinding;
@@ -39,12 +37,16 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentSettingsBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
+        initSwitchStatus();
         startLogoutListening();
         startLanguageMenuListening();
+        startAboutMeMenuListening();
+        startDeletePokemonSwitchListening();
 
         MyApp app = (MyApp) requireActivity().getApplication();
         return view;
     }
+
 
     public void startLogoutListening() {
         TextView logoutBtn = binding.tvLogoutBtn;
@@ -56,10 +58,27 @@ public class SettingsFragment extends Fragment {
         languageBtn.setOnClickListener(this::onLanguageClick);
     }
 
-    private void onLanguageClick(View v) {
-        PopupMenu popupMenu = inflateLanguageMenu(v);
-        popupMenu.setOnMenuItemClickListener(menuItem -> onContextItemSelected(menuItem));
-        popupMenu.show();
+    private void startAboutMeMenuListening() {
+        TextView aboutMeBtn = binding.tvAbout;
+        aboutMeBtn.setOnClickListener(this::onAboutMeClick);
+    }
+
+    private void initSwitchStatus() {
+        MaterialSwitch switchDeletePokemon = binding.switchDeletePokemon;
+        MyApp app = (MyApp) requireActivity().getApplication();
+        switchDeletePokemon.setChecked(app.getDeletePokemonOption().equals("true"));
+    }
+
+    private void startDeletePokemonSwitchListening() {
+        MaterialSwitch switchDeletePokemon = binding.switchDeletePokemon;
+        switchDeletePokemon.setOnCheckedChangeListener(this::onCheckedSwitchDeletePokemon);
+
+    }
+
+    private void onCheckedSwitchDeletePokemon(CompoundButton switchView, boolean isChecked) {
+        String selectedDeleteOption = isChecked ? "true" : "false";
+        MyApp app = (MyApp) requireActivity().getApplication();
+        app.saveDeletePokemonOption(selectedDeleteOption);
     }
 
     private void onLogoutClick(View v) {
@@ -75,6 +94,20 @@ public class SettingsFragment extends Fragment {
         Intent i = new Intent(requireContext(), LoginActivity.class);
         startActivity(i);
         getActivity().finish();
+    }
+
+    private void onLanguageClick(View v) {
+        PopupMenu popupMenu = inflateLanguageMenu(v);
+        popupMenu.setOnMenuItemClickListener(menuItem -> onContextItemSelected(menuItem));
+        popupMenu.show();
+    }
+
+    private void onAboutMeClick(View v) {
+        new MaterialAlertDialogBuilder(requireContext())
+                .setTitle(getResources().getString(R.string.context_menu_about_me))
+                .setMessage(getResources().getString(R.string.context_menu_alert_dialog_text))
+                .setNeutralButton(R.string.context_menu_neutral_button, (dialog, which) -> dialog.dismiss())
+                .show();
     }
 
     public PopupMenu inflateLanguageMenu(View v) {

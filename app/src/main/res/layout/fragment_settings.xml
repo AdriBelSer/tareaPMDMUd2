@@ -41,7 +41,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:drawablePadding="@dimen/small_padding"
-
         android:paddingVertical="@dimen/default_padding"
         android:text="@string/settings_delete_pokemon_switch"
         android:textAppearance="?attr/textAppearanceBodyLarge"

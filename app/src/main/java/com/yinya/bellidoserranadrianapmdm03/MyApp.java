@@ -11,6 +11,7 @@ import java.util.Locale;
 public class MyApp extends Application {
     protected static final String PREFS_NAME = "AppPreferences";
     protected static final String KEY_LANGUAGE = "language";
+    protected static final String KEY_DELETE = "delete";
 
     @Override
     public void onCreate() {
@@ -43,6 +44,20 @@ public class MyApp extends Application {
         editor.putString(KEY_LANGUAGE, language);
         editor.apply();
     }
+
+    public String getDeletePokemonOption(){
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        return preferences.getString(KEY_DELETE, "false");
+    }
+
+    public void saveDeletePokemonOption (String deleteOption){
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(KEY_DELETE, deleteOption);
+        editor.apply();
+    }
+
+
 
 
 }

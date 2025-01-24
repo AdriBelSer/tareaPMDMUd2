@@ -88,4 +88,8 @@ public class MainActivity extends AppCompatActivity {
 
         Navigation.findNavController(view).navigate(R.id.pokemonDetailFragment, bundle);
     }
+
+    public void deleteCapturedPokemon(int id) {
+        
+    }
 }

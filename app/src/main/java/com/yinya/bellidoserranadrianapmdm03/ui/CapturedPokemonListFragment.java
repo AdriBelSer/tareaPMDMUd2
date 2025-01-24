@@ -27,6 +27,7 @@ public class CapturedPokemonListFragment extends Fragment {
     private RecyclerView pokemonsRv;
     private CapturedPokemonListAdapter adapter;
     private ArrayList<CapturedPokemonData> capturedPokemons = new ArrayList<>();
+    private ArrayList<PokemonDetailApiModel> repositoryCapturedPokemons = new ArrayList<>();
     LiveData<List<PokemonDetailApiModel>> capturedPokemonsLiveData;
     private Observer<List<PokemonDetailApiModel>> observer = repositoryCapturedPokemons -> {
         if (repositoryCapturedPokemons != null) {

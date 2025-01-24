@@ -3,7 +3,9 @@ package com.yinya.bellidoserranadrianapmdm03.ui.adapters;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
+import com.yinya.bellidoserranadrianapmdm03.MyApp;
 import com.yinya.bellidoserranadrianapmdm03.R;
 import com.yinya.bellidoserranadrianapmdm03.databinding.CardListCapturedPokemonItemBinding;
 import com.yinya.bellidoserranadrianapmdm03.ui.MainActivity;
@@ -21,8 +24,8 @@ import java.util.ArrayList;
 
 public class CapturedPokemonListAdapter extends RecyclerView.Adapter<CapturedPokemonListAdapter.CapturedPokemonViewHolder> {
 
-    private ArrayList<CapturedPokemonData> capturedPokemons;
     private final Context context;
+    private ArrayList<CapturedPokemonData> capturedPokemons;
 
     public CapturedPokemonListAdapter(ArrayList<CapturedPokemonData> capturedPokemons, Context context) {
         this.capturedPokemons = capturedPokemons;
@@ -51,6 +54,19 @@ public class CapturedPokemonListAdapter extends RecyclerView.Adapter<CapturedPok
             ((MainActivity) context).showPokemonDetail(currentPokemon.getId(), v);
             Log.d("captured", "selected");
         });
+        setDeleteButton(holder, currentPokemon);
+    }
+
+    private void setDeleteButton(@NonNull CapturedPokemonListAdapter.CapturedPokemonViewHolder holder, CapturedPokemonData currentPokemon) {
+        MyApp app = (MyApp) context.getApplicationContext();
+        if (app.getDeletePokemonOption().equals("true")) {
+            holder.btnDelete.setVisibility(View.VISIBLE);
+            holder.btnDelete.setOnClickListener(v -> {
+                ((MainActivity) context).deleteCapturedPokemon(currentPokemon.getId());
+            });
+        } else {
+            holder.btnDelete.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -67,6 +83,7 @@ public class CapturedPokemonListAdapter extends RecyclerView.Adapter<CapturedPok
         private TextView tvHeight;
         private TextView tvWeight;
         private ImageView ivImage;
+        private Button btnDelete;
 
         public CapturedPokemonViewHolder(@NonNull CardListCapturedPokemonItemBinding binding) {
             super(binding.getRoot());
@@ -77,6 +94,7 @@ public class CapturedPokemonListAdapter extends RecyclerView.Adapter<CapturedPok
             tvHeight = binding.tvCapturedPokemonItemHeightAmount;
             tvWeight = binding.tvCapturedPokemonItemWeightAmount;
             ivImage = binding.ivCapturedPokemonItem;
+            btnDelete = binding.btnCapturedPokemonDelete;
         }
     }
 }
