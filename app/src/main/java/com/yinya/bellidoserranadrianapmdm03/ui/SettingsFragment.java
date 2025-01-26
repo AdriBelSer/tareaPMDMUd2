@@ -86,6 +86,7 @@ public class SettingsFragment extends Fragment {
                 .signOut(requireContext())
                 .addOnCompleteListener(task -> {
                     Log.d("Logout", "Logout successful");
+                    ((MainActivity) requireActivity()).networkRepository.resetRepository();
                     goToLogin();
                 });
     }

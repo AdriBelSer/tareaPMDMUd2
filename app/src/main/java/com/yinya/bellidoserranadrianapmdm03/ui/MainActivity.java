@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -20,9 +19,7 @@ import com.yinya.bellidoserranadrianapmdm03.data.network.repository.models.Pokem
 import com.yinya.bellidoserranadrianapmdm03.databinding.ActivityMainBinding;
 import com.yinya.bellidoserranadrianapmdm03.ui.models.CapturedPokemonData;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MainActivity extends BaseActivity {
     public NetworkRepository networkRepository;
@@ -39,7 +36,6 @@ public class MainActivity extends BaseActivity {
         setBottomNavigation();
         initNetworkRepository();
         fetchPokemons();
-        getCapturedPokemons();
         startCapturedPokemonsObservation();
     }
 
@@ -58,6 +54,16 @@ public class MainActivity extends BaseActivity {
         NavigationUI.setupWithNavController(navView, navController);
         //Para colorear los iconos de menú
         navView.setItemIconTintList(null);
+
+        navView.setOnItemSelectedListener(item -> {
+            int currentDestinationId = navController.getCurrentDestination().getId();
+
+            if (currentDestinationId == R.id.capturedPokemonListFragment) {
+                navController.popBackStack();
+            }
+            NavigationUI.onNavDestinationSelected(item, navController);
+            return true;
+        });
     }
 
     private void initNetworkRepository() {
@@ -82,15 +88,8 @@ public class MainActivity extends BaseActivity {
         networkRepository.getCapturedPokemonsLiveData().observe(this, capturedPokemons -> {
             if (capturedPokemons != null) {
                 this.capturedPokemons = capturedPokemons;
-                Map<String, List<PokemonDetailApiModel>> pokemons = new HashMap<>();
-                pokemons.put("pokemons", capturedPokemons);
-                networkRepository.setPokemonsToUser(pokemons);
             }
         });
-    }
-
-    public void getCapturedPokemons() {
-
     }
 
     public void showPokemonDetail(CapturedPokemonData currentPokemon, View view) {
@@ -101,6 +100,7 @@ public class MainActivity extends BaseActivity {
         bundle.putString("height", String.format("%.1f", currentPokemon.getHeight()));
         bundle.putString("type1", currentPokemon.getType1());
         bundle.putString("type2", currentPokemon.getType2());
+
         Navigation.findNavController(view).navigate(R.id.action_capturedPokemonListFragment_to_pokemonDetailFragment, bundle);
     }
 

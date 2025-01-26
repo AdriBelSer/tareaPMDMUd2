@@ -1,5 +1,8 @@
 package com.yinya.bellidoserranadrianapmdm03.data.network.repository.models;
 
+import java.util.Map;
+import java.util.Objects;
+
 public class PokemonDetailApiModel {
     private int id;
     private String name;
@@ -10,7 +13,18 @@ public class PokemonDetailApiModel {
     private String frontDefault;
     private String officialArtwork;
 
-    public PokemonDetailApiModel() {}
+    public PokemonDetailApiModel(Map<String, Object> p) {
+        this(
+                ((Number) Objects.requireNonNull(p.get("id"))).intValue(),
+                (String) p.get("name"),
+                ((Number) Objects.requireNonNull(p.get("weight"))).floatValue(),
+                ((Number) Objects.requireNonNull(p.get("height"))).floatValue(),
+                (String) p.get("type1"),
+                (String) p.get("type2"),
+                (String) p.get("frontDefault"),
+                (String) p.get("officialArtwork")
+        );
+    }
 
     public PokemonDetailApiModel(int id, String name, float weight, float height, String type1, String type2, String frontDefault, String officialArtwork) {
         this.id = id;

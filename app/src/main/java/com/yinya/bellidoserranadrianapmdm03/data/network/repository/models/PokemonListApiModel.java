@@ -8,9 +8,9 @@ import java.util.List;
 public class PokemonListApiModel {
     private List<PokemonListItemApiModel> pokemons;
 
-    public static ArrayList<PokedexPokemonData> asPokemonListApiModel(List<PokemonListItemApiModel> pokemonsListApiModel) {
+    public static ArrayList<PokedexPokemonData> asPokedexPokemonDataList(List<PokemonListItemApiModel> pokemonsListApiModel) {
         ArrayList<PokedexPokemonData> pokemons = new ArrayList();
-        pokemonsListApiModel.forEach(i -> pokemons.add(new PokedexPokemonData(i.getId(), false, i.getName())));
+        pokemonsListApiModel.forEach(i -> pokemons.add(new PokedexPokemonData(i.getId(), i.getCaptureState(), i.getName())));
         return pokemons;
     }
 }

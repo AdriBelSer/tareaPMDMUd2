@@ -11,6 +11,6 @@ public interface IPokemonApi {
     @GET("pokemon/{id}")
     Call<PokemonDetailResponseDataClass> fetchPokemon(@Path("id") String id);
 
-    @GET("pokemon")
+    @GET("pokemon?limit=150")
     Call<PokemonResponseDataClass> fetchPokemonsList();
 }
