@@ -65,3 +65,14 @@ La aplicación "Gestor de Pokémon Capturados" está diseñada para que los usua
 ## Conclusiones del desarrollador
 
 Durante el desarrollo de esta aplicación, he reforzado la implementación de Recyclerview y he asentado conceptos de la unidad anterior, he encontrado dificultades como por ejemplo la gestión de datos procedentes de la API, así como su guardado en bases de datos no relacionales como Firebase. El aprendizaje principal adquirido en esta tarea incluye la configuración inicial de Firebase y la gestión del consumo de la API de Pokémon con Retrofit. A través de este proyecto, profundicé en la organización de código y la gestión de datos entre la aplicación y servicios externos. 
+
+## Capturas de pantalla
+<img src="https://github.com/user-attachments/assets/f37fdbbf-d6c7-4071-a3d4-f5e116fc1a3a" alt="Screenshot 1" width="400">
+<img src="https://github.com/user-attachments/assets/2e91a550-f1c7-4fca-8e01-088ec666696f" alt="Screenshot 2" width="400">
+<img src="https://github.com/user-attachments/assets/8576d32f-e95e-4b4f-8db6-7ca7a2e79c2c" alt="Screenshot 3" width="400">
+<img src="https://github.com/user-attachments/assets/731aca4c-0d14-4dd0-a70d-e3c18ff5e6cb" alt="Screenshot 4" width="400">
+<img src="https://github.com/user-attachments/assets/d088d207-c337-4d93-b083-d6587cc2f0cb" alt="Screenshot 5" width="400">
+<img src="https://github.com/user-attachments/assets/d2165d44-aa79-4917-bd46-7c0e419b66ac" alt="Screenshot 6" width="400">
+<img src="https://github.com/user-attachments/assets/e5772edd-99e9-4d75-af43-3bb4bdc1d30b" alt="Screenshot 7" width="400">
+<img src="https://github.com/user-attachments/assets/f51c2a1e-7c25-42ee-a31f-f02d4beadac9" alt="Screenshot 8" width="400">
+
