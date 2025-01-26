@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     public NetworkRepository networkRepository;
     ActivityMainBinding binding;
     private List<PokemonDetailApiModel> capturedPokemons;

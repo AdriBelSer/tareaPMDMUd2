@@ -1,9 +1,11 @@
 package com.yinya.bellidoserranadrianapmdm03;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.util.Log;
 
 import java.util.Locale;
@@ -17,8 +19,8 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
 
+        // Apply the saved language on App initialization
         String savedLanguage = getSavedLanguage();
-        Log.d("language", savedLanguage);
         applyLanguage(savedLanguage);
     }
 
@@ -26,14 +28,24 @@ public class MyApp extends Application {
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
 
-        Configuration config = new Configuration();
+        Resources resources = getBaseContext().getResources();
+        Configuration config = resources.getConfiguration();
         config.setLocale(locale);
+        config.setLayoutDirection(locale);
 
-        Context context = getBaseContext().createConfigurationContext(config);
-        getBaseContext().getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
+        Context context = getBaseContext();
+        context.createConfigurationContext(config);
+        context.getResources().updateConfiguration(config, resources.getDisplayMetrics());
     }
 
-    private String getSavedLanguage() {
+    public void applySavedLanguage(Activity activity) {
+        String savedLanguage = getSavedLanguage();
+        Log.d(KEY_LANGUAGE, savedLanguage);
+        applyLanguage(savedLanguage);
+        activity.recreate();
+    }
+
+    public String getSavedLanguage() {
         SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         return preferences.getString(KEY_LANGUAGE, "en");
     }
@@ -56,8 +68,5 @@ public class MyApp extends Application {
         editor.putString(KEY_DELETE, deleteOption);
         editor.apply();
     }
-
-
-
 
 }

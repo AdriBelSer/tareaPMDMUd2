@@ -132,11 +132,7 @@ public class SettingsFragment extends Fragment {
         }
 
         app.saveLanguage(selectedLanguage);
-        app.applyLanguage(selectedLanguage);
-        Log.d("language menu", selectedLanguage);
-
-        // TODO Restart activity
-
+        app.applySavedLanguage(requireActivity());
         return true;
     }
 

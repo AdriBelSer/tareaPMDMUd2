@@ -20,7 +20,7 @@ import com.yinya.bellidoserranadrianapmdm03.R;
 import java.util.Arrays;
 import java.util.List;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
             new FirebaseAuthUIActivityResultContract(),
             new ActivityResultCallback<FirebaseAuthUIAuthenticationResult>() {
