@@ -29,4 +29,7 @@
     <string name="context_menu_about_me">Acerca de…</string>
     <string name="context_menu_alert_dialog_text">Aplicación desarrollada por Adriana Bellido Serrán. Versión 1.0.</string>
     <string name="context_menu_neutral_button">Cerrar</string>
+    <string name="context_menu_log_out_text">¿Estás seguro de que quieres cerrar tu sesión de usuario?</string>
+    <string name="context_menu_log_out_positive_button">Sí</string>
+    <string name="context_menu_log_out_negative_button">No</string>
 </resources>

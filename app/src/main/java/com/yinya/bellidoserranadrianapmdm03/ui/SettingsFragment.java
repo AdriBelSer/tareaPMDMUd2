@@ -50,7 +50,7 @@ public class SettingsFragment extends Fragment {
 
     public void startLogoutListening() {
         TextView logoutBtn = binding.tvLogoutBtn;
-        logoutBtn.setOnClickListener(this::onLogoutClick);
+        logoutBtn.setOnClickListener(this::onLogOutAlertDialog);
     }
 
     public void startLanguageMenuListening() {
@@ -116,6 +116,15 @@ public class SettingsFragment extends Fragment {
         MenuInflater inflater = requireActivity().getMenuInflater();
         inflater.inflate(R.menu.language_menu, popupMenu.getMenu());
         return popupMenu;
+    }
+
+    private void onLogOutAlertDialog(View v) {
+        new MaterialAlertDialogBuilder(requireContext())
+                .setTitle(getResources().getString(R.string.settings_logout))
+                .setMessage(getResources().getString(R.string.context_menu_log_out_text))
+                .setNegativeButton(getResources().getString(R.string.context_menu_log_out_negative_button), (dialog, which) -> dialog.dismiss())
+                .setPositiveButton(getResources().getString(R.string.context_menu_log_out_positive_button), (dialog, which) -> onLogoutClick(v))
+                .show();
     }
 
     @Override
