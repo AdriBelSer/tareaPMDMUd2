@@ -32,8 +32,7 @@ public class PokedexListFragment extends Fragment {
     private Observer<List<PokemonDetailApiModel>> observer = capturedPokemons -> {
         if (capturedPokemons != null) {
             for (PokedexPokemonData p : this.pokemons) {
-                boolean found = capturedPokemons.stream()
-                        .anyMatch(pokemon -> pokemon.getId() == p.getId());
+                boolean found = capturedPokemons.stream().anyMatch(pokemon -> pokemon.getId() == p.getId());
                 p.setCaptureState(found);
             }
             fillRecyclerView(this.pokemons);

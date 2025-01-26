@@ -26,8 +26,8 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     public NetworkRepository networkRepository;
-
     ActivityMainBinding binding;
+    private List<PokemonDetailApiModel> capturedPokemons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,12 +69,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fetchOnePokemon(int id) {
-        networkRepository.fetchOnePokemonFromApi(id);
+        boolean found = false;
+        if (this.capturedPokemons != null) {
+            found = capturedPokemons.stream().anyMatch(pokemon -> pokemon.getId() == id);
+        }
+        if (!found) {
+            networkRepository.fetchOnePokemonFromApi(id);
+        }
     }
 
     private void startCapturedPokemonsObservation() {
         networkRepository.getCapturedPokemonsLiveData().observe(this, capturedPokemons -> {
             if (capturedPokemons != null) {
+                this.capturedPokemons = capturedPokemons;
                 Map<String, List<PokemonDetailApiModel>> pokemons = new HashMap<>();
                 pokemons.put("pokemons", capturedPokemons);
                 networkRepository.setPokemonsToUser(pokemons);
