@@ -6,9 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.yinya.bellidoserranadrianapmdm03.databinding.FragmentPokemonDetailBinding;
 import com.yinya.bellidoserranadrianapmdm03.ui.models.PokedexPokemonData;
 
@@ -29,9 +32,30 @@ public class PokemonDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentPokemonDetailBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
+        setDefaultActionBar();
         Bundle arguments = getArguments();
         fillPokemon(arguments);
         return view;
+    }
+
+    /**
+     * Sets the default action bar using a MaterialToolbar.
+     * Configures the AppBarLayout to disable lift-on-scroll behavior.
+     */
+    private void setDefaultActionBar() {
+        MaterialToolbar toolbar = binding.mtPokemonDetail;
+        AppBarLayout appBarLayout = binding.appbarLayoutPokemonDetail;
+        AppCompatActivity activity = (AppCompatActivity) requireActivity();
+        activity.setSupportActionBar(toolbar);
+
+        if (activity.getSupportActionBar() != null) {
+            activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            activity.getSupportActionBar().setDisplayShowTitleEnabled(false); // Sin texto
+        }
+        appBarLayout.setLiftOnScroll(false);
+        toolbar.setNavigationOnClickListener(v -> {
+            requireActivity().getOnBackPressedDispatcher().onBackPressed();
+        });
     }
 
     private void fillPokemon(Bundle arguments) {
